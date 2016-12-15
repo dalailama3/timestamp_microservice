@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 
 app.get('/:date', function (req, res) {
     var params = req.params.date
-    console.log(params)
+
     if (Number.isInteger(parseInt(params))) {
         var milliseconds = params * 1000;
         var date = new Date (milliseconds)
@@ -26,16 +26,13 @@ app.get('/:date', function (req, res) {
             var unix = naturalDate.getTime() / 1000
             var json = {
                 'unix': unix,
-                'natural': naturalDate
+                'natural': naturalDate.toDateString()
             }
             res.json(json)
         } else {
             res.json({ 'unix': null, 'natural': null })
         }
-    
     }
-
-    
 })
 
 app.listen('8080')
